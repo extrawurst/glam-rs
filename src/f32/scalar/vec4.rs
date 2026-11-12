@@ -28,7 +28,7 @@ pub const fn vec4(x: f32, y: f32, z: f32, w: f32) -> Vec4 {
     feature = "zerocopy",
     derive(FromBytes, Immutable, IntoBytes, KnownLayout)
 )]
-#[cfg_attr(any(not(feature = "scalar-math"), feature = "cuda"), repr(align(16)))]
+#[repr(align(16))]
 #[repr(C)]
 #[cfg_attr(target_arch = "spirv", rust_gpu::vector::v1)]
 pub struct Vec4 {

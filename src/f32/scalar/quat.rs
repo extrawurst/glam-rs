@@ -34,7 +34,7 @@ pub const fn quat(x: f32, y: f32, z: f32, w: f32) -> Quat {
     feature = "zerocopy",
     derive(FromBytes, Immutable, IntoBytes, KnownLayout)
 )]
-#[cfg_attr(not(feature = "scalar-math"), repr(align(16)))]
+#[repr(align(16))]
 #[repr(C)]
 #[cfg_attr(target_arch = "spirv", rust_gpu::vector::v1)]
 pub struct Quat {
