@@ -44,7 +44,7 @@ pub const fn mat4(x_axis: Vec4, y_axis: Vec4, z_axis: Vec4, w_axis: Vec4) -> Mat
     feature = "zerocopy-08",
     derive(FromBytes, Immutable, IntoBytes, KnownLayout)
 )]
-#[cfg_attr(any(not(feature = "scalar-math"), feature = "cuda"), repr(align(16)))]
+#[repr(align(16))]
 #[repr(C)]
 pub struct Mat4 {
     pub x_axis: Vec4,

@@ -984,7 +984,7 @@ mod bool {
             state.serialize_field(&a[0])?;
             state.serialize_field(&a[1])?;
             state.serialize_field(&a[2])?;
-            state.serialize_field(&a[2])?;
+            state.serialize_field(&a[3])?;
             state.end()
         }
     }

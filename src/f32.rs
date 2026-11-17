@@ -88,7 +88,7 @@ pub use vec4::{vec4, Vec4};
 mod test {
     use super::*;
 
-    #[cfg(all(not(feature = "cuda"), feature = "scalar-math"))]
+    #[cfg(any())]
     mod const_test_affine2 {
         const_assert_eq!(
             core::mem::align_of::<super::Vec2>(),
@@ -97,19 +97,18 @@ mod test {
         const_assert_eq!(24, core::mem::size_of::<super::Affine2>());
     }
 
-    #[cfg(not(feature = "scalar-math"))]
     mod const_test_affine2 {
         const_assert_eq!(16, core::mem::align_of::<super::Affine2>());
         const_assert_eq!(32, core::mem::size_of::<super::Affine2>());
     }
 
     mod const_test_mat2 {
-        #[cfg(feature = "scalar-math")]
+        #[cfg(any())]
         const_assert_eq!(
             core::mem::align_of::<super::Vec2>(),
             core::mem::align_of::<super::Mat2>()
         );
-        #[cfg(not(any(feature = "scalar-math", target_arch = "spirv")))]
+        #[cfg(not(target_arch = "spirv"))]
         const_assert_eq!(16, core::mem::align_of::<super::Mat2>());
         const_assert_eq!(16, core::mem::size_of::<super::Mat2>());
     }
@@ -136,12 +135,12 @@ mod test {
     }
 
     mod const_test_quat {
-        #[cfg(feature = "scalar-math")]
+        #[cfg(any())]
         const_assert_eq!(
             core::mem::align_of::<f32>(),
             core::mem::align_of::<super::Quat>()
         );
-        #[cfg(not(any(feature = "scalar-math", target_arch = "spirv")))]
+        #[cfg(not(target_arch = "spirv"))]
         const_assert_eq!(16, core::mem::align_of::<super::Quat>());
         const_assert_eq!(16, core::mem::size_of::<super::Quat>());
     }
@@ -171,12 +170,6 @@ mod test {
     }
 
     mod const_test_vec4 {
-        #[cfg(all(feature = "scalar-math", not(feature = "cuda")))]
-        const_assert_eq!(
-            core::mem::align_of::<f32>(),
-            core::mem::align_of::<super::Vec4>()
-        );
-        #[cfg(not(feature = "scalar-math"))]
         const_assert_eq!(16, core::mem::align_of::<super::Vec4>());
         const_assert_eq!(16, core::mem::size_of::<super::Vec4>());
     }

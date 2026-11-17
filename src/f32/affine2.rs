@@ -9,12 +9,8 @@ use zerocopy_derive_08::*;
 /// A 2D affine transform, which can represent translation, rotation, scaling and shear.
 #[derive(Copy, Clone)]
 #[cfg_attr(
-    all(feature = "bytemuck", not(feature = "scalar-math")),
+    feature = "bytemuck",
     derive(bytemuck::AnyBitPattern)
-)]
-#[cfg_attr(
-    all(feature = "bytemuck", feature = "scalar-math"),
-    derive(bytemuck::Pod, bytemuck::Zeroable)
 )]
 #[cfg_attr(
     all(feature = "zerocopy-08", not(feature = "core-simd")),
